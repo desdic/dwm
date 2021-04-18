@@ -42,15 +42,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Mumble",         NULL,       NULL,       1 << 0,       0,           -1 },
-	{ "Dino",           NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Firefox",        NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "Google-chrome",  NULL,       NULL,       1 << 2,       0,           -1 },
-	{ NULL,             "work",     NULL,       1 << 3,       0,           -1 },
-	{ NULL,             "mutt",     NULL,       1 << 4,       0,           -1 },
-	{ "Slack",          NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Spotify",        NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance    title                     tags mask     isfloating   monitor     notallowed*/
+	{ NULL,       NULL,       "Slack | mini panel",     1 << 0,       0,           -1,         1 },
+	{ "Mumble",         NULL,       NULL,               1 << 0,       0,           -1,         0 },
+	{ "Dino",           NULL,       NULL,               1 << 1,       0,           -1,         0 },
+	{ "Firefox",        NULL,       NULL,               1 << 2,       0,           -1,         0 },
+	{ "Google-chrome",  NULL,       NULL,               1 << 2,       0,           -1,         0 },
+	{ NULL,             "work",     NULL,               1 << 3,       0,           -1,         0 },
+	{ NULL,             "mutt",     NULL,               1 << 4,       0,           -1,         0 },
+	{ "Slack",          NULL,       NULL,               1 << 7,       0,           -1,         0 },
+	{ "Spotify",        NULL,       NULL,               1 << 8,       0,           -1,         0 },
 };
 
 /* layout(s) */
@@ -63,6 +64,8 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
 	{ NULL,       NULL },
 };
 
@@ -100,9 +103,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[4]} },
 
 	{ MODKEY|ControlMask,           XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
