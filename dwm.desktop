@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=dwm
+Comment=dwm Session
+Exec=dwm
+Icon=dwm
+Type=Application
+Keywords=wm;tiling
